@@ -11,6 +11,7 @@ This application is a simple project for performing **spell correction** in the 
 ## 📸 Application Preview
 
 ![App Screenshot](./static/Screenshot%202025-03-13%20105314.png)
+![App Screenshot](./static/Screenshot 2025-03-13 105105.png)
 
 ---
 
