@@ -85,7 +85,7 @@ This application is a simple project for performing **spell correction** in the 
 
 ## 📞 Contact
 
-- **Name**: Filbert C. B. Kristianto
+- **Name**: Filbert Chaitra Bessel Kristianto
 - **GitHub**: [https://github.com/filbertcha](https://github.com/filbertcha)
 
 ```
