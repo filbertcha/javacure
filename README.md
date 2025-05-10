@@ -58,8 +58,8 @@ This application is a simple project for performing **spell correction** in the 
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/username/repo-name.git
-   cd repo-name
+   git clone https://github.com/filbertcha/javacure.git
+   cd javacure
 
    ```
 
