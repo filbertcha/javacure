@@ -87,7 +87,3 @@ This application is a simple project for performing **spell correction** in the 
 
 - **Name**: Filbert Chaitra Bessel Kristianto
 - **GitHub**: [https://github.com/filbertcha](https://github.com/filbertcha)
-
-```
-
-```
