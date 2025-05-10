@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Koreksi Teks Bahasa Jawa</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="container">
+          <div class="logo">JAVACURE</div>
+          <ul class="nav-links">
+            <li><a href="/" class="active">Beranda</a></li>
+            <li><a href="/accuracy">Akurasi</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Koreksi Teks Bahasa Jawa</h1>
+          <p>Masukkan kata dalam bahasa Jawa yang ingin dikoreksi</p>
+        </div>
+      </section>
+
+      <section class="correction-form">
+        <div class="container">
+          <form id="text-form">
+            <div class="input-group">
+              <input
+                type="text"
+                id="input-text"
+                name="input_text"
+                placeholder="Masukkan kata..."
+              />
+              <button type="submit">Koreksi</button>
+            </div>
+          </form>
+
+          <div id="result" class="result-container hidden">
+            <div class="result-card">
+              <div class="input-text">
+                <h3>Teks Asli:</h3>
+                <p id="original-text"></p>
+              </div>
+              <div class="output-text">
+                <h3>Hasil Koreksi:</h3>
+                <p id="corrected-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info">
+        <div class="container">
+          <h2>Tentang Koreksi Teks</h2>
+          <p>
+            Sistem koreksi teks ini menggunakan algoritma K-Means clustering dan
+            Levenshtein Distance untuk mengoreksi kesalahan penulisan kata dalam
+            bahasa Jawa.
+          </p>
+          <p>
+            Model ini memanfaatkan dataset sastra Jawa untuk mengenali dan
+            memperbaiki kata-kata yang salah ketik.
+          </p>
+          <a href="/accuracy" class="info-link">Lihat Akurasi Model</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 JAVACURE - Sistem Koreksi Teks Bahasa Jawa</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("text-form");
+        const resultContainer = document.getElementById("result");
+        const originalText = document.getElementById("original-text");
+        const correctedText = document.getElementById("corrected-text");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(form);
+
+          // Show loading state
+          resultContainer.classList.remove("hidden");
+          originalText.textContent = "Memproses...";
+          correctedText.textContent = "Memproses...";
+
+          fetch("/correct_text", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              originalText.textContent = data.original;
+              correctedText.textContent = data.corrected;
+
+              // Highlight if changed
+              if (data.changed) {
+                correctedText.classList.add("highlighted");
+              } else {
+                correctedText.classList.remove("highlighted");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              originalText.textContent = "Terjadi kesalahan";
+              correctedText.textContent = "Silakan coba lagi";
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

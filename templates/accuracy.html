@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akurasi Model - Koreksi Teks Bahasa Jawa</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="container">
+          <div class="logo">JAVACURE</div>
+          <ul class="nav-links">
+            <li><a href="/">Beranda</a></li>
+            <li><a href="/accuracy" class="active">Akurasi</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Akurasi Model</h1>
+          <p>Statistik dan metrik dari model koreksi teks</p>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <div class="container">
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h3>Akurasi</h3>
+              <div class="metric-value">{{ metrics.accuracy }}%</div>
+              <p>Persentase prediksi yang benar</p>
+            </div>
+
+            <div class="metric-card">
+              <h3>Precision</h3>
+              <div class="metric-value">{{ metrics.precision }}%</div>
+              <p>Ketepatan model saat memprediksi</p>
+            </div>
+
+            <div class="metric-card">
+              <h3>Recall</h3>
+              <div class="metric-value">{{ metrics.recall }}%</div>
+              <p>Kemampuan mendeteksi kata yang perlu dikoreksi</p>
+            </div>
+
+            <div class="metric-card">
+              <h3>F1 Score</h3>
+              <div class="metric-value">{{ metrics.f1_score }}%</div>
+              <p>Keseimbangan antara precision dan recall</p>
+            </div>
+          </div>
+
+          <div class="confusion-matrix">
+            <h3>Confusion Matrix</h3>
+            <div class="matrix-container">
+              <div class="matrix-box">
+                <div class="matrix-cell top-left">
+                  <div class="cell-name">True Positive</div>
+                  <div class="cell-value">
+                    {{ metrics.confusion_matrix[0] }}
+                  </div>
+                  <div class="cell-desc">Tidak perlu koreksi & benar</div>
+                </div>
+                <div class="matrix-cell top-right">
+                  <div class="cell-name">False Negative</div>
+                  <div class="cell-value">
+                    {{ metrics.confusion_matrix[1] }}
+                  </div>
+                  <div class="cell-desc">Dikoreksi tapi salah</div>
+                </div>
+                <div class="matrix-cell bottom-left">
+                  <div class="cell-name">False Positive</div>
+                  <div class="cell-value">
+                    {{ metrics.confusion_matrix[2] }}
+                  </div>
+                  <div class="cell-desc">
+                    Tidak dikoreksi tapi harusnya dikoreksi
+                  </div>
+                </div>
+                <div class="matrix-cell bottom-right">
+                  <div class="cell-name">True Negative</div>
+                  <div class="cell-value">
+                    {{ metrics.confusion_matrix[3] }}
+                  </div>
+                  <div class="cell-desc">Dikoreksi & benar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="methodology">
+        <div class="container">
+          <h2>Metodologi Evaluasi</h2>
+          <p>
+            Model dievaluasi menggunakan data sintetis yang dibuat dengan
+            menambahkan kesalahan acak pada kata-kata bahasa Jawa yang valid.
+          </p>
+          <p>
+            Tiap kata asli digunakan untuk membuat kata dengan kesalahan, lalu
+            model mengoreksi kata tersebut dan hasilnya dibandingkan dengan kata
+            asli.
+          </p>
+          <ul class="methodology-list">
+            <li>
+              <strong>True Positive:</strong> Model tidak mengubah kata dan
+              sesuai dengan kata asli
+            </li>
+            <li>
+              <strong>True Negative:</strong> Model mengubah kata dan hasilnya
+              sesuai dengan kata asli
+            </li>
+            <li>
+              <strong>False Positive:</strong> Model tidak mengubah kata,
+              padahal seharusnya diubah
+            </li>
+            <li>
+              <strong>False Negative:</strong> Model mengubah kata, tapi
+              hasilnya tidak sesuai dengan kata asli
+            </li>
+          </ul>
+          <a href="/" class="back-link">Kembali ke Beranda</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 JAVACURE - Sistem Koreksi Teks Bahasa Jawa</p>
+      </div>
+    </footer>
+  </body>
+</html>

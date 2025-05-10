@@ -1,0 +1,6 @@
+flask
+numpy
+pandas
+scikit-learn
+python-Levenshtein
+jupyter
