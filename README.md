@@ -80,6 +80,9 @@ This application is a simple project for performing **spell correction** in the 
 
 ---
 
+## 📝 Notes
+- This website is for educational purposes only and intended solely for learning about Natural Language Processing.
+
 ## 📞 Contact
 
 - **Name**: Filbert C. B. Kristianto
